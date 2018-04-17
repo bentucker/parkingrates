@@ -1,0 +1,14 @@
+{
+  "rates": [
+    {
+      "days": "mon,tues,wed,thurs,fri",
+      "times": "0600-1800",
+      "price": 1500
+    },
+    {
+      "days": "sat,sun",
+      "times": "0600-2000",
+      "price": 2000
+    }
+  ]
+}

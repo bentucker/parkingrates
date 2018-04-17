@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/rpc/status.proto";
+import "google/api/annotations.proto";
+
+
+message RatesRequest {
+    google.protobuf.Timestamp start = 1; // the time at which the parking space will be reserved
+    google.protobuf.Timestamp end = 2; // the time at which the parking space must be vacated
+}
+
+message RatesReply {
+    google.rpc.Status status = 1; // the status of the GetRates RPC call
+    double rate = 2; // optional -- the rate at which parking will be billed for the requested timeframe
+}
+
+service Rates {
+    // Determine how much parking will cost for a specified timeframe
+    rpc GetRates (RatesRequest) returns (RatesReply) {
+        option (google.api.http) = {
+          post: "/v1/spothero/getrates"
+          body: "*"
+        };
+    }
+}
